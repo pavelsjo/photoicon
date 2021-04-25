@@ -38,9 +38,13 @@ async function predict(tensorflowArray) {
     const {indices, values} = tf.topk(prediction, 3);
     
     const topIcons = indices.dataSync();
-    console.log(`${INCEPTION_CLASSES[topIcons[0]]}`);
-    console.log(`${INCEPTION_CLASSES[topIcons[1]]}`);
-    console.log(`${INCEPTION_CLASSES[topIcons[2]]}`);
+    topIcons.forEach((icon)=>{
+
+        getIcon(INCEPTION_CLASSES[icon]);
+        console.log(INCEPTION_CLASSES[icon]);
+
+    });
+
     //clear tensors
     tensorflowArray.dispose();
     prediction.dispose();
@@ -54,5 +58,29 @@ function photoToIcon() {
     const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
     predict(tensorRectified);
 };
+
+var resultsDiv = document.getElementById("results");
+
+async function getIcon(iconName) {
+  try {
+
+    var queryValue = iconName.replace(' ', '+');
+    var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=3`);
+    var iconsArray = response.data.icons;
+
+    iconsArray.forEach(element => {
+
+      // create a new element
+      var newImage = document.createElement('img');
+      newImage.src = element.raster_sizes[5].formats[0].preview_url;
+      newImage.width = "64";
+      resultsDiv.appendChild(newImage);
+      
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 startup();
