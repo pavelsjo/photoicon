@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    color: white;
+    background-color: #183153;
+    font-size: 1em;
+}
+
+h1 {
+    width: 100%;
+    background: #183153;
+}
+
+.wrapper {
+    max-width: 90%;
+    padding: 2%;
+    margin: 0 auto;
+    background-color: #00BFB3;
+    text-align: center;
+}
+
+video {
+    width: 100%;
+    border: 3px solid rgb(173, 42, 42);
+}
+
+.fa-camera {
+    background-color: #183153;
+    color: white;
+    font-size: 2em;
+    border-radius: 100%;
+    padding: 7%;
+    margin: 5% auto;
+    cursor: pointer;
+}
