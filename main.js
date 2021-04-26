@@ -1,5 +1,21 @@
 import {INCEPTION_CLASSES} from './labels.js';
 
+var cameraOn = document.getElementById('camera-on');
+var toggleCamera = document.getElementById('togle-camera');
+
+cameraOn.addEventListener('click', (event) => {
+    startup();
+});
+
+toggleCamera.addEventListener('click', (event) => {
+    if (toggleCamera.className === "fas fa-toggle-on fa-rotate-180"){
+        toggleCamera.className = "fas fa-toggle-on"
+    } else {
+        toggleCamera.className = "fas fa-toggle-on fa-rotate-180"
+    };
+    
+});
+
 function startup() {
     
     var video = document.getElementById('video');
@@ -26,7 +42,7 @@ function startup() {
 
     buttonPhoto.addEventListener('click', (event) =>{
         photoToIcon();
-        event.preventDefault()
+        event.preventDefault();
     });
 
 };
@@ -38,7 +54,7 @@ async function predict(tensorflowArray) {
     const {indices, values} = tf.topk(prediction, 3);
     
     const topIcons = indices.dataSync();
-    topIcons.forEach((icon)=>{
+    topIcons.forEach( (icon) => {
 
         getIcon(INCEPTION_CLASSES[icon]);
         console.log(INCEPTION_CLASSES[icon]);
@@ -82,5 +98,3 @@ async function getIcon(iconName) {
     console.error(error);
   }
 }
-
-startup();

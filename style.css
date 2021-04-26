@@ -1,40 +1,79 @@
 body {
     margin: 0;
-    color: white;
-    background-color: #183153;
-    font-size: 1em;
-}
-
-h1 {
-    width: 100%;
-    background: #183153;
+    background-color: #ffffff;
 }
 
 .wrapper {
-    max-width: 90%;
+    max-width: 95%;
     padding: 2%;
     margin: 0 auto;
-    background-color: #00BFB3;
+    background-color: #ffffff;
     text-align: center;
 }
 
-video {
-    width: 100%;
-    border: 3px solid rgb(173, 42, 42);
+.input-photo video {
+    margin: 0 0 0 -1%;
+    width: 94%;
+    border-top: solid 5px rgba(0,0,0,0.2);
+    border-bottom: solid 5px rgba(0,0,0,0.2);
+    border-radius: 45px;
+    
 }
 
-.fa-camera {
-    background-color: #183153;
-    color: white;
-    font-size: 2em;
-    border-radius: 100%;
-    padding: 7%;
-    margin: 5% auto;
+.fas, .far {
     cursor: pointer;
 }
 
+.fa-circle {
+    font-size: 5em;
+    margin: 10% 0 3% -20%;
+}
+
+.fa-toggle-on {
+    float: left;
+    position: relative;
+    font-size: 2em;
+    margin: 1% 0 0 5%;
+}
+
+.fa-rotate-180 {
+    color: rgba(0,0,0,0.2);
+}
+
+.fa-circle:hover {
+    color: rgba(230, 230, 230, 0.2);
+    background-color: black;
+    border-radius: 100%;
+}
+
+.input-text {
+    margin: 5% auto;
+}
+
+.input-text input {
+    border: 1px solid #aaa;
+    font-size:16px;
+    padding: 2% 2% 2% 10%;
+    width:85%;
+    background:#fff;
+    padding: 2% auto;
+    border-radius:20px;
+    outline: none !important;
+}
+
+.fa-search {
+    position: relative;
+    left: 10%;
+}
+
+.fa-camera {
+    position: relative;
+    right: 10%;
+}
+
+
 #results {
-    width: 90%;
+    width: 80%;
     padding: 10px;
     margin: 0 auto;
     background: #fff;
@@ -43,7 +82,7 @@ video {
 }
 
 #results img {
-    width: 10%;
+    width: 15%;
     margin: 10px;
     vertical-align: middle;
 }
