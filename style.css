@@ -12,7 +12,7 @@ body {
 }
 
 .input-photo video {
-    margin: 0 0 0 -1%;
+    min-height: 224px;
     width: 94%;
     border-top: solid 5px rgba(0,0,0,0.2);
     border-bottom: solid 5px rgba(0,0,0,0.2);

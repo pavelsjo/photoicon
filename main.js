@@ -2,18 +2,25 @@ import {INCEPTION_CLASSES} from './labels.js';
 
 var cameraOn = document.getElementById('camera-on');
 var toggleCamera = document.getElementById('togle-camera');
+var formSearch = document.getElementById('form');
 
 cameraOn.addEventListener('click', (event) => {
     startup();
 });
 
 toggleCamera.addEventListener('click', (event) => {
-    if (toggleCamera.className === "fas fa-toggle-on fa-rotate-180"){
+    if (toggleCamera.className === "fas fa-toggle-on fa-rotate-180") {
         toggleCamera.className = "fas fa-toggle-on"
     } else {
         toggleCamera.className = "fas fa-toggle-on fa-rotate-180"
     };
-    
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    var textInput = document.getElementById('input-text');
+    getIcon(textInput.value);
 });
 
 function startup() {
@@ -61,7 +68,7 @@ async function predict(tensorflowArray) {
 
     });
 
-    //clear tensors
+    // clear tensors
     tensorflowArray.dispose();
     prediction.dispose();
     indices.dispose();
@@ -81,7 +88,7 @@ async function getIcon(iconName) {
   try {
 
     var queryValue = iconName.replace(' ', '+');
-    var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=3`);
+    var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=4`);
     var iconsArray = response.data.icons;
 
     iconsArray.forEach(element => {
