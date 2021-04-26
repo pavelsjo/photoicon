@@ -5,6 +5,8 @@ var toggleCamera = document.getElementById('togle-camera');
 var formSearch = document.getElementById('form');
 
 cameraOn.addEventListener('click', (event) => {
+    const inputDiv = document.getElementById('input-div');
+    inputDiv.style.display = 'block';
     startup();
 });
 

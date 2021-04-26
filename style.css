@@ -11,13 +11,16 @@ body {
     text-align: center;
 }
 
+.input-photo {
+    display: none;
+}
+
 .input-photo video {
     min-height: 224px;
     width: 94%;
     border-top: solid 5px rgba(0,0,0,0.2);
     border-bottom: solid 5px rgba(0,0,0,0.2);
     border-radius: 45px;
-    
 }
 
 .fas, .far {
