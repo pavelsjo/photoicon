@@ -10,21 +10,19 @@ cameraOn.addEventListener('click', (event) => {
 
 toggleCamera.addEventListener('click', (event) => {
     if (toggleCamera.className === "fas fa-toggle-on fa-rotate-180") {
-        toggleCamera.className = "fas fa-toggle-on"
+        toggleCamera.className = "fas fa-toggle-on";
     } else {
-        toggleCamera.className = "fas fa-toggle-on fa-rotate-180"
+        toggleCamera.className = "fas fa-toggle-on fa-rotate-180";
     };
 });
 
-form.addEventListener('submit', (event) => {
+formSearch.addEventListener('submit', (event) => {
     event.preventDefault();
-
     var textInput = document.getElementById('input-text');
     getIcon(textInput.value);
 });
 
 function startup() {
-    
     var video = document.getElementById('video');
     var buttonPhoto = document.getElementById('button-photo');
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
@@ -47,11 +45,10 @@ function startup() {
         console.log('No compatible browser with mediaDevices or getUserMedia'); 
     }
 
-    buttonPhoto.addEventListener('click', (event) =>{
+    buttonPhoto.addEventListener('click', (event) => {
         photoToIcon();
         event.preventDefault();
     });
-
 };
 
 async function predict(tensorflowArray) {
@@ -86,7 +83,6 @@ var resultsDiv = document.getElementById("results");
 
 async function getIcon(iconName) {
   try {
-
     var queryValue = iconName.replace(' ', '+');
     var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=4`);
     var iconsArray = response.data.icons;
@@ -97,11 +93,16 @@ async function getIcon(iconName) {
       var newImage = document.createElement('img');
       newImage.src = element.raster_sizes[5].formats[0].preview_url;
       newImage.width = "64";
-      resultsDiv.appendChild(newImage);
+      resultsDiv.prepend(newImage);
       
+      // limit icons
+      const maxIcons = 16;
+      if (resultsDiv.childElementCount > maxIcons) {
+        resultsDiv.removeChild(resultsDiv.lastElementChild)
+      }
     });
 
   } catch (error) {
     console.error(error);
-  }
-}
+  };
+};
