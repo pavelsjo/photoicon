@@ -1,5 +1,8 @@
 import {INCEPTION_CLASSES} from './labels.js';
 
+startup();
+
+// listeners
 var cameraOn = document.getElementById('camera-on');
 var formSearch = document.getElementById('form');
 var iconSearch = document.getElementById('search-on');
@@ -11,7 +14,6 @@ cameraOn.addEventListener('click', (event) => {
     if (cameraOn.className === 'fas fa-camera') {
         inputDiv.style.display = 'block';
         cameraOn.className = "fas fa-camera selected"
-        startup();
     } else {
         inputDiv.style.display = 'none';
         cameraOn.className = "fas fa-camera"
@@ -67,18 +69,21 @@ async function loadModel() {
 
 async function predict(model) {
 
-    model.then((res) => {
-        const currentFrame = video;
-        const tensorCurrent = tf.browser.fromPixels(currentFrame);
-        const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
-        const prediction = res.predict(tensorRectified);
-        const {indices, values} = tf.topk(prediction, 1);
-        const topIcon = indices.dataSync();
-        const topValue = values.dataSync();
-
-        getIcon(INCEPTION_CLASSES[topIcon]);
-        console.log(INCEPTION_CLASSES[topIcon], topValue );
+    tf.tidy(() => {
+        model.then((res) => {
+            const currentFrame = video;
+            const tensorCurrent = tf.browser.fromPixels(currentFrame);
+            const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
+            const prediction = res.predict(tensorRectified);
+            const {indices, values} = tf.topk(prediction, 1);
+            const topIcon = indices.dataSync();
+            const topValue = values.dataSync();
+    
+            getIcon(INCEPTION_CLASSES[topIcon]);
+            console.log(INCEPTION_CLASSES[topIcon], topValue );
+        });
     });
+    console.log(tf.memory().numTensors);
 
 };
 
