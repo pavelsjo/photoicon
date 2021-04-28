@@ -38,8 +38,8 @@ async function startup() {
         
         navigator.mediaDevices.getUserMedia({
             video: {
-                width: 224,
-                height: 224,
+                width: 480,
+                height: 480,
                 facingMode: 'environment'
             }
         })
