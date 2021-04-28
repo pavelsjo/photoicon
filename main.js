@@ -84,9 +84,16 @@ async function predict(model) {
 
 async function getIcon(iconName) {
     var resultsDiv = document.getElementById("results");
+
+    // Search notification
+    var titleSearchDiv = document.getElementById("looking-for");
+    titleSearchDiv.innerHTML = `Results for: ${iconName}`;
+    
+    
   try {
+    
     var queryValue = iconName.replace(' ', '+');
-    var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=4`);
+    var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=1`);
     var iconsArray = response.data.icons;
 
     iconsArray.forEach(element => {

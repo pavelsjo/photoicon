@@ -74,6 +74,14 @@ body {
     right: 10%;
 }
 
+#looking-for {
+    text-align: left;
+    margin: 0 0 3% 10%;
+    font-size: 1em;
+    font-weight: lighter;
+    color: rgb(131, 131, 131);
+}
+
 
 #results {
     width: 80%;
