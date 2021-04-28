@@ -34,20 +34,8 @@ body {
 
 .fa-circle {
     font-size: 5em;
-    margin: 10% 0 3% -20%;
+    margin: 5% auto;
 }
-
-.fa-toggle-on {
-    float: left;
-    position: relative;
-    font-size: 2em;
-    margin: 1% 0 0 5%;
-}
-
-.fa-rotate-180 {
-    color: rgba(0,0,0,0.2);
-}
-
 
 .input-text {
     margin: 5% auto;

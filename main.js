@@ -1,7 +1,6 @@
 import {INCEPTION_CLASSES} from './labels.js';
 
 var cameraOn = document.getElementById('camera-on');
-var toggleCamera = document.getElementById('togle-camera');
 var formSearch = document.getElementById('form');
 var iconSearch = document.getElementById('search-on');
 
@@ -18,14 +17,6 @@ cameraOn.addEventListener('click', (event) => {
         cameraOn.className = "fas fa-camera"
     }
 
-});
-
-toggleCamera.addEventListener('click', (event) => {
-    if (toggleCamera.className === "fas fa-toggle-on fa-rotate-180") {
-        toggleCamera.className = "fas fa-toggle-on";
-    } else {
-        toggleCamera.className = "fas fa-toggle-on fa-rotate-180";
-    };
 });
 
 iconSearch.addEventListener('click', (event) => {
