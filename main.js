@@ -24,7 +24,8 @@ formSearch.addEventListener('submit', (event) => {
     getIcon(textInput.value);
 });
 
-function startup() {
+async function startup() {
+    var model = loadModel();
     var video = document.getElementById('video');
     var buttonPhoto = document.getElementById('button-photo');
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
@@ -48,42 +49,39 @@ function startup() {
     }
 
     buttonPhoto.addEventListener('click', (event) => {
-        photoToIcon();
+        predict(model);
         event.preventDefault();
     });
 };
 
-async function predict(tensorflowArray) {
+async function loadModel() {
     const modelUrl = 'https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v3_small_100_224/feature_vector/5/default/1';
-    const model = await tf.loadGraphModel(modelUrl, {fromTFHub:true});
-    const prediction = model.predict(tensorflowArray);
-    const {indices, values} = tf.topk(prediction, 3);
+    return await tf.loadGraphModel(modelUrl, {fromTFHub:true});
+};
+
+async function predict(model) {
+
+    model.then((res) => {
+
+        const currentFrame = video;
+        const tensorCurrent = tf.browser.fromPixels(currentFrame);
+        const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
+        const prediction = res.predict(tensorRectified);
+        const {indices, values} = tf.topk(prediction, 3);
+        const topIcons = indices.dataSync();
     
-    const topIcons = indices.dataSync();
-    topIcons.forEach( (icon) => {
-
-        getIcon(INCEPTION_CLASSES[icon]);
-        console.log(INCEPTION_CLASSES[icon]);
-
+        topIcons.forEach( (icon) => {
+    
+            getIcon(INCEPTION_CLASSES[icon]);
+            console.log(INCEPTION_CLASSES[icon]);
+    
+        });
     });
 
-    // clear tensors
-    tensorflowArray.dispose();
-    prediction.dispose();
-    indices.dispose();
-    values.dispose();
 };
-
-function photoToIcon() {
-    const currentFrame = video;
-    const tensorCurrent = tf.browser.fromPixels(currentFrame);
-    const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
-    predict(tensorRectified);
-};
-
-var resultsDiv = document.getElementById("results");
 
 async function getIcon(iconName) {
+    var resultsDiv = document.getElementById("results");
   try {
     var queryValue = iconName.replace(' ', '+');
     var response = await axios.get(`https://iconfinder-api-auth.herokuapp.com/v4/icons/search?query=${queryValue}&count=4`);
