@@ -63,7 +63,7 @@ async function startup() {
 };
 
 async function loadModel() {
-    const modelUrl = 'https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v3_small_100_224/feature_vector/5/default/1';
+    const modelUrl = 'https://tfhub.dev/google/tfjs-model/imagenet/inception_v3/classification/3/default/1';
     return await tf.loadGraphModel(modelUrl, {fromTFHub:true});
 };
 
@@ -73,7 +73,7 @@ async function predict(model) {
         model.then((res) => {
             const currentFrame = video;
             const tensorCurrent = tf.browser.fromPixels(currentFrame);
-            const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
+            const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [299, 299], true).div(255).reshape([1, 299, 299,3]);
             const prediction = res.predict(tensorRectified);
             const {indices, values} = tf.topk(prediction, 1);
             const topIcon = indices.dataSync();
