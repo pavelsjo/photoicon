@@ -68,20 +68,16 @@ async function loadModel() {
 async function predict(model) {
 
     model.then((res) => {
-
         const currentFrame = video;
         const tensorCurrent = tf.browser.fromPixels(currentFrame);
         const tensorRectified = tf.image.resizeBilinear(tensorCurrent, [224, 224], true).div(255).reshape([1, 224, 224,3]);
         const prediction = res.predict(tensorRectified);
-        const {indices, values} = tf.topk(prediction, 3);
-        const topIcons = indices.dataSync();
-    
-        topIcons.forEach( (icon) => {
-    
-            getIcon(INCEPTION_CLASSES[icon]);
-            console.log(INCEPTION_CLASSES[icon]);
-    
-        });
+        const {indices, values} = tf.topk(prediction, 1);
+        const topIcon = indices.dataSync();
+        const topValue = values.dataSync();
+
+        getIcon(INCEPTION_CLASSES[topIcon]);
+        console.log(INCEPTION_CLASSES[topIcon], topValue );
     });
 
 };
@@ -104,7 +100,7 @@ async function getIcon(iconName) {
       // limit icons
       const maxIcons = 16;
       if (resultsDiv.childElementCount > maxIcons) {
-        resultsDiv.removeChild(resultsDiv.lastElementChild)
+        resultsDiv.removeChild(resultsDiv.lastElementChild);
       }
     });
 
