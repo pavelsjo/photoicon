@@ -27,6 +27,11 @@ body {
     cursor: pointer;
 }
 
+.selected {
+    color: rgb(31, 149, 204);
+    font-size: 1.3em;
+}
+
 .fa-circle {
     font-size: 5em;
     margin: 10% 0 3% -20%;
@@ -43,11 +48,6 @@ body {
     color: rgba(0,0,0,0.2);
 }
 
-.fa-circle:hover {
-    color: rgba(230, 230, 230, 0.2);
-    background-color: black;
-    border-radius: 100%;
-}
 
 .input-text {
     margin: 5% auto;

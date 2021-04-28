@@ -6,9 +6,18 @@ var formSearch = document.getElementById('form');
 var iconSearch = document.getElementById('search-on');
 
 cameraOn.addEventListener('click', (event) => {
-    const inputDiv = document.getElementById('input-div');
-    inputDiv.style.display = 'block';
-    startup();
+
+    var inputDiv = document.getElementById('input-div');
+
+    if (cameraOn.className === 'fas fa-camera') {
+        inputDiv.style.display = 'block';
+        cameraOn.className = "fas fa-camera selected"
+        startup();
+    } else {
+        inputDiv.style.display = 'none';
+        cameraOn.className = "fas fa-camera"
+    }
+
 });
 
 toggleCamera.addEventListener('click', (event) => {
