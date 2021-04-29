@@ -1,13 +1,23 @@
 body {
+    font-family: 'Courier New', monospace;
     margin: 0;
-    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+}
+
+h1 {
+    color: #49C6E5;
+    width: 100%;
+    font-size: 3em;
+    border-radius: 5px;
+    margin: 5% 0 3% 0;
 }
 
 .wrapper {
     max-width: 95%;
-    padding: 2%;
+    padding: 1%;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: #FFFBFA;
     text-align: center;
 }
 
@@ -17,24 +27,26 @@ body {
 
 .input-photo video {
     min-height: 224px;
-    width: 94%;
-    border-top: solid 5px rgba(0,0,0,0.2);
-    border-bottom: solid 5px rgba(0,0,0,0.2);
-    border-radius: 45px;
+    width: 100%;
+    border-top: solid 15px #49C6E5;
+    border-bottom: solid 5px #49C6E5;
+    border-radius: 15px;
 }
 
 .fas, .far {
     cursor: pointer;
+    color: #54DEFD;
 }
 
 .selected {
-    color: rgb(31, 149, 204);
+    color: #54DEFD;
     font-size: 1.3em;
 }
 
 .fa-circle {
     font-size: 5em;
     margin: 5% auto;
+    color: #54DEFD;
 }
 
 .input-text {
@@ -42,32 +54,37 @@ body {
 }
 
 .input-text input {
-    border: 1px solid #aaa;
-    font-size:16px;
-    padding: 2% 2% 2% 10%;
+    border: 1px solid #54DEFD;
+    font-size:15px;
+    padding: 2% 10% 2% 10%;
     width:85%;
-    background:#fff;
+    background:#ffffff;
     padding: 2% auto;
-    border-radius:20px;
+    border-radius: 7px;
     outline: none !important;
 }
 
 .fa-search {
-    position: relative;
-    left: 10%;
+ float: left;
+ position: relative;
+ top: 9px;
+ left: 10%;
 }
 
+
 .fa-camera {
+    float: right;
     position: relative;
-    right: 10%;
+    top: 6px;
+    right: 11%;
 }
 
 #looking-for {
     text-align: left;
-    margin: 0 0 3% 10%;
+    margin: 0 0 3% 8%;
     font-size: 1em;
     font-weight: lighter;
-    color: rgb(131, 131, 131);
+    color: #49C6E5;
 }
 
 
@@ -75,8 +92,8 @@ body {
     width: 80%;
     padding: 10px;
     margin: 0 auto;
-    background: #fff;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    background: #8BD7D2;
+    box-shadow: 1px 1px 5px #49C6E5;
     border-radius: 3px;
 }
 

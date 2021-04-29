@@ -78,7 +78,7 @@ async function predict(model) {
             const {indices, values} = tf.topk(prediction, 1);
             const topIcon = indices.dataSync();
             const topValue = values.dataSync();
-    
+                
             getIcon(INCEPTION_CLASSES[topIcon]);
             console.log(INCEPTION_CLASSES[topIcon], topValue );
         });
@@ -110,7 +110,7 @@ async function getIcon(iconName) {
       resultsDiv.prepend(newImage);
       
       // limit icons
-      const maxIcons = 16;
+      const maxIcons = 12;
       if (resultsDiv.childElementCount > maxIcons) {
         resultsDiv.removeChild(resultsDiv.lastElementChild);
       }
