@@ -6,11 +6,13 @@ body {
 }
 
 h1 {
+    text-align: center;
     color: #49C6E5;
-    width: 100%;
     font-size: 3em;
     border-radius: 5px;
     margin: 10% 0 10% 0;
+    border-left: #49C6E5 solid 3px;
+    border-right: #49C6E5 solid 3px;
 }
 
 .wrapper {
@@ -38,11 +40,6 @@ h1 {
     color: #54DEFD;
 }
 
-.selected {
-    color: #54DEFD;
-    font-size: 1.3em;
-}
-
 .fa-circle {
     font-size: 5em;
     margin: 5% auto;
@@ -65,17 +62,26 @@ h1 {
 }
 
 .fa-search {
- float: left;
- position: relative;
- top: 9px;
- left: 10%;
+    font-size: 1.2em;
+    float: left;
+    position: relative;
+    top: 7px;
+    left: 10%;
 }
 
-
 .fa-camera {
+    font-size: 1.2em;
     float: right;
     position: relative;
-    top: 6px;
+    top: 7px;
+    right: 11%;
+}
+
+.fa-stop-circle {
+    font-size: 1.2em;
+    float: right;
+    position: relative;
+    top: 7px;
     right: 11%;
 }
 
@@ -86,7 +92,6 @@ h1 {
     font-weight: lighter;
     color: #49C6E5;
 }
-
 
 #results {
     width: 80%;

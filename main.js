@@ -13,7 +13,7 @@ cameraOn.addEventListener('click', (event) => {
 
     if (cameraOn.className === 'fas fa-camera') {
         inputDiv.style.display = 'block';
-        cameraOn.className = "fas fa-camera selected"
+        cameraOn.className = "fas fa-stop-circle fa-spin"
     } else {
         inputDiv.style.display = 'none';
         cameraOn.className = "fas fa-camera"
