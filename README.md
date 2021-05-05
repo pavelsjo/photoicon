@@ -1,4 +1,4 @@
-# photoicon - [DEMO](https://pavelsjo.github.io/photicon/)
+# photoicon - [DEMO](https://pavelsjo.github.io/photoicon/)
 
 Object detection from pictures to text using tensorflow js to look for icons using tensorflow js.
 
